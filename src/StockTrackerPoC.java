@@ -33,7 +33,8 @@ public class StockTrackerPoC {
      *            the stock ticker symbol
      * @param shares
      *            the new share count for {@code ticker}
-     * @requires ticker is in this.sharesByTicker
+     * @requires ticker is in this.sharesByTicker AND ticker is in
+     *           this.priceByTicker
      * @ensures sharesOf(ticker) = shares
      */
     public void setShares(String ticker, int shares) {
@@ -101,7 +102,8 @@ public class StockTrackerPoC {
      * @param ticker
      *            the stock ticker symbol
      * @return the share count associated with {@code ticker}
-     * @requires ticker is in this.sharesByTicker
+     * @requires ticker is in this.sharesByTicker AND ticker is in
+     *           this.priceByTicker
      * @ensures sharesOf = the value mapped to ticker in this.sharesByTicker
      */
     public int sharesOf(String ticker) {
@@ -117,7 +119,8 @@ public class StockTrackerPoC {
      *            the stock ticker symbol
      * @param delta
      *            the change in shares (may be negative)
-     * @requires ticker is in this.sharesByTicker
+     * @requires ticker is in this.sharesByTicker AND ticker is in
+     *           this.priceByTicker
      * @requires sharesOf(ticker) + delta >= 0
      * @ensures sharesOf(ticker) = #sharesOf(ticker) + delta
      */
