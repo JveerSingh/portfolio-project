@@ -107,23 +107,81 @@ public class StockTrackerPoC {
 
     // Secondary Methods
 
+    /**
+     * Adds {@code delta} shares to {@code ticker}.
+     *
+     * @param ticker
+     *            the stock ticker symbol
+     * @param delta
+     *            the change in shares (may be negative)
+     * @requires ticker is in this.sharesByTicker
+     * @requires sharesOf(ticker) + delta >= 0
+     * @ensures sharesOf(ticker) = #sharesOf(ticker) + delta
+     */
     public void addShares(String ticker, int delta) {
-
+        int shares = this.sharesByTicker.value(ticker);
+        this.sharesByTicker.replaceValue(ticker, shares + delta);
     }
 
+    /**
+     * Reports the number of tickers being tracked.
+     *
+     * @return the number of tickers in this tracker
+     * @ensures numberOfTickers = |this.sharesByTicker|
+     */
     public int numberOfTickers() {
-
+        return this.sharesByTicker.size();
     }
 
+    /**
+     * Reports the total number of shares across all tracked tickers.
+     *
+     * @return the sum of all share counts in this tracker
+     * @ensures totalShares = sum of shares over all tickers in
+     *          this.sharesByTicker
+     */
     public int totalShares() {
-
+        int sum = 0;
+        for (int i = 0; i < this.sharesByTicker.size(); i++) {
+            Map.Pair<String, Integer> p = this.sharesByTicker.removeAny();
+            sum += p.value();
+            this.sharesByTicker.add(p.key(), p.value());
+        }
+        return sum;
     }
 
-    String largestHolding() {
+    /**
+     * Reports the ticker with the largest share count.
+     *
+     * @return a ticker whose share count is maximal among tracked tickers
+     * @requires this.sharesByTicker is not empty
+     * @ensures largestHolding is in this.sharesByTicker
+     */
+    public String largestHolding() {
+        String bestTicker = "";
+        int bestShares = -1;
 
+        for (int i = 0; i < this.sharesByTicker.size(); i++) {
+            Map.Pair<String, Integer> p = this.sharesByTicker.removeAny();
+
+            if (p.value() > bestShares) {
+                bestShares = p.value();
+                bestTicker = p.key();
+            }
+
+            this.sharesByTicker.add(p.key(), p.value());
+        }
+
+        return bestTicker;
     }
 
-    boolean isEmpty() {
-
+    /**
+     * Reports whether this tracker has no tickers.
+     *
+     * @return {@code true} iff no tickers are tracked
+     * @ensures isEmpty = (numberOfTickers() = 0)
+     */
+    public boolean isEmpty() {
+        return this.sharesByTicker.size() == 0;
     }
 }
