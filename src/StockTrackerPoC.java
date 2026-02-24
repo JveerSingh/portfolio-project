@@ -68,8 +68,11 @@ public class StockTrackerPoC {
      * @param ticker
      *            the stock ticker symbol to remove
      * @return the shares that were associated with {@code ticker}
-     * @requires ticker is in this.sharesByTicker
-     * @ensures ticker is not in this.sharesByTicker
+     * @requires ticker is in this.sharesByTicker AND ticker is in
+     *           this.priceByTicker
+     *
+     * @ensures ticker is not in this.sharesByTicker AND ticker is not in
+     *          this.priceByTicker
      */
     public int removeTicker(String ticker) {
         Map.Pair<String, Integer> pair = this.sharesByTicker.remove(ticker);
@@ -142,7 +145,9 @@ public class StockTrackerPoC {
      */
     public int totalShares() {
         int sum = 0;
-        for (int i = 0; i < this.sharesByTicker.size(); i++) {
+        int n = this.sharesByTicker.size();
+
+        for (int i = 0; i < n; i++) {
             Map.Pair<String, Integer> p = this.sharesByTicker.removeAny();
             sum += p.value();
             this.sharesByTicker.add(p.key(), p.value());
@@ -160,8 +165,9 @@ public class StockTrackerPoC {
     public String largestHolding() {
         String bestTicker = "";
         int bestShares = -1;
+        int n = this.sharesByTicker.size();
 
-        for (int i = 0; i < this.sharesByTicker.size(); i++) {
+        for (int i = 0; i < n; i++) {
             Map.Pair<String, Integer> p = this.sharesByTicker.removeAny();
 
             if (p.value() > bestShares) {
@@ -183,5 +189,43 @@ public class StockTrackerPoC {
      */
     public boolean isEmpty() {
         return this.sharesByTicker.size() == 0;
+    }
+
+    /**
+     *
+     * Main method.
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        StockTrackerPoC st = new StockTrackerPoC();
+
+        // start empty
+        System.out.println("Empty? " + st.isEmpty());
+
+        // add tickers
+        st.addTicker("AAPL", 10, 185.25);
+        st.addTicker("MSFT", 4, 412.10);
+        st.addTicker("GOOG", 1, 142.80);
+
+        System.out.println("Tickers: " + st.numberOfTickers());
+        System.out.println("Total shares: " + st.totalShares());
+        System.out.println("Largest holding: " + st.largestHolding());
+
+        // mutate holdings
+        st.addShares("AAPL", 5); // AAPL -> 15
+        st.setShares("MSFT", 7); // MSFT -> 7
+
+        System.out.println("AAPL shares: " + st.sharesOf("AAPL"));
+        System.out.println("MSFT shares: " + st.sharesOf("MSFT"));
+        System.out.println(
+                "Largest holding (after changes): " + st.largestHolding());
+        System.out.println("Total shares (after changes): " + st.totalShares());
+
+        // remove ticker
+        int removed = st.removeTicker("GOOG");
+        System.out.println("Removed GOOG shares: " + removed);
+        System.out.println("Has GOOG? " + st.hasTicker("GOOG"));
+        System.out.println("Tickers (after removal): " + st.numberOfTickers());
     }
 }
