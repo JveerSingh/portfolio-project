@@ -58,5 +58,4 @@ public interface StockTracker extends StockTrackerKernel {
      *          this
      */
     double totalValue();
-
 }

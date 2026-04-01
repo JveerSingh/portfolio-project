@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/) of
 the following form: YYYY.0M.0D.
 
+## [2026.03.31]
+
+### Added
+
+- Implemented abstract class StockTrackerSecondary for StockTracker component
+- Added kernel methods size() and removeAnyTicker() to support iteration over tickers
+
+### Updated
+
+- Refined kernel design to enable implementation of all secondary methods
+- Implemented all secondary methods using only kernel methods and Standard methods (newInstance, transferFrom)
+- Implemented common methods toString() and equals() in abstract class
+
 ## [2026.03.9]
 
 ### Added
