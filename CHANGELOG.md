@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/) of
 the following form: YYYY.0M.0D.
 
+## 2026.04.15
+
+### Added
+
+- Implemented kernel representation for the StockTracker component
+- Added convention and correspondence for `StockTracker1L`
+
+### Updated
+
+- Completed all kernel methods in `StockTracker1L`
+- Completed Standard methods (`clear`, `newInstance`, and `transferFrom`)
+
 ## [2026.03.31]
 
 ### Added
