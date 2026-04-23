@@ -91,4 +91,21 @@ public interface StockTrackerKernel extends Standard<StockTracker> {
      */
     double priceOf(String ticker);
 
+    /**
+     * Removes and returns an arbitrary ticker.
+     *
+     * @return some ticker from this
+     * @requires this is not empty
+     * @updates this
+     * @ensures returned ticker was in this
+     */
+    String removeAnyTicker();
+
+    /**
+     * Reports the number of tickers in this tracker.
+     *
+     * @return the number of tickers
+     * @ensures size = number of tickers in this
+     */
+    int size();
 }
