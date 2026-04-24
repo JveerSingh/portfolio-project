@@ -5,29 +5,18 @@ public abstract class StockTrackerSecondary implements StockTracker {
 
     @Override
     public void addShares(String ticker, int delta) {
+        assert ticker != null : "Violation of: ticker is not null";
+        assert this.hasTicker(ticker) : "Violation of: ticker is in this";
+        assert this.sharesOf(ticker)
+                + delta >= 0 : "Violation of: sharesOf(ticker) + delta >= 0";
+
         int shares = this.sharesOf(ticker);
         this.setShares(ticker, shares + delta);
     }
 
     @Override
     public int numberOfTickers() {
-        int count = 0;
-        int n = this.size();
-        StockTracker temp = this.newInstance();
-
-        for (int i = 0; i < n; i++) {
-            String t = this.removeAnyTicker();
-
-            int shares = this.sharesOf(t);
-            double price = this.priceOf(t);
-
-            count++;
-
-            temp.addTicker(t, shares, price);
-        }
-
-        this.transferFrom(temp);
-        return count;
+        return this.size();
     }
 
     @Override
@@ -37,7 +26,7 @@ public abstract class StockTrackerSecondary implements StockTracker {
         StockTracker temp = this.newInstance();
 
         for (int i = 0; i < n; i++) {
-            String t = this.removeAnyTicker();
+            String t = this.reportTicker();
 
             int shares = this.sharesOf(t);
             double price = this.priceOf(t);
@@ -53,6 +42,8 @@ public abstract class StockTrackerSecondary implements StockTracker {
 
     @Override
     public String largestHolding() {
+        assert !this.isEmpty() : "Violation of: this is not empty";
+
         String best = "";
         int bestShares = -1;
 
@@ -60,7 +51,7 @@ public abstract class StockTrackerSecondary implements StockTracker {
         StockTracker temp = this.newInstance();
 
         for (int i = 0; i < n; i++) {
-            String t = this.removeAnyTicker();
+            String t = this.reportTicker();
 
             int shares = this.sharesOf(t);
             double price = this.priceOf(t);
@@ -89,7 +80,7 @@ public abstract class StockTrackerSecondary implements StockTracker {
         StockTracker temp = this.newInstance();
 
         for (int i = 0; i < n; i++) {
-            String t = this.removeAnyTicker();
+            String t = this.reportTicker();
 
             int shares = this.sharesOf(t);
             double price = this.priceOf(t);
@@ -113,7 +104,7 @@ public abstract class StockTrackerSecondary implements StockTracker {
         boolean first = true;
 
         for (int i = 0; i < n; i++) {
-            String t = this.removeAnyTicker();
+            String t = this.reportTicker();
 
             int shares = this.sharesOf(t);
             double price = this.priceOf(t);
@@ -148,38 +139,44 @@ public abstract class StockTrackerSecondary implements StockTracker {
             return false;
         }
 
-        StockTracker tempThis = this.newInstance();
-        StockTracker tempOther = other.newInstance();
-
-        boolean equal = true;
+        boolean same = true;
         int n = this.size();
+        StockTracker temp = this.newInstance();
 
         for (int i = 0; i < n; i++) {
-            String t = this.removeAnyTicker();
-
+            String t = this.reportTicker();
             int shares = this.sharesOf(t);
             double price = this.priceOf(t);
 
             if (!other.hasTicker(t) || other.sharesOf(t) != shares
                     || other.priceOf(t) != price) {
-                equal = false;
+                same = false;
             }
 
-            tempThis.addTicker(t, shares, price);
+            temp.addTicker(t, shares, price);
         }
+
+        this.transferFrom(temp);
+        return same;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        int n = this.size();
+        StockTracker temp = this.newInstance();
 
         for (int i = 0; i < n; i++) {
-            String t = other.removeAnyTicker();
+            String t = this.reportTicker();
+            int shares = this.sharesOf(t);
+            double price = this.priceOf(t);
 
-            int shares = other.sharesOf(t);
-            double price = other.priceOf(t);
+            result += t.hashCode() + shares + Double.valueOf(price).hashCode();
 
-            tempOther.addTicker(t, shares, price);
+            temp.addTicker(t, shares, price);
         }
 
-        this.transferFrom(tempThis);
-        other.transferFrom(tempOther);
-
-        return equal;
+        this.transferFrom(temp);
+        return result;
     }
 }

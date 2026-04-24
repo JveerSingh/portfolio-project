@@ -127,7 +127,7 @@ public final class StockTracker1L extends StockTrackerSecondary {
     }
 
     @Override
-    public String removeAnyTicker() {
+    public String reportTicker() {
         assert this.size() > 0 : "Violation of: this is not empty";
 
         String ticker = this.tickerOrder.dequeue();
@@ -147,7 +147,12 @@ public final class StockTracker1L extends StockTrackerSecondary {
 
     @Override
     public StockTracker newInstance() {
-        return new StockTracker1L();
+        try {
+            return this.getClass().getConstructor().newInstance();
+        } catch (ReflectiveOperationException e) {
+            throw new AssertionError(
+                    "Cannot construct object of type " + this.getClass());
+        }
     }
 
     @Override

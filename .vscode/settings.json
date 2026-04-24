@@ -21,7 +21,9 @@
     ],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
-        "lib/**/*.jar"
+        "c:\\Users\\jaysi\\OneDrive\\CSE 2231\\portfolio-project\\lib\\hamcrest-core-1.3.jar",
+        "c:\\Users\\jaysi\\OneDrive\\CSE 2231\\portfolio-project\\lib\\junit-4.13.2.jar",
+        "c:\\Users\\jaysi\\OneDrive\\CSE 2231\\portfolio-project\\lib\\components.jar"
     ],
     "java.saveActions.cleanup": true,
     "java.cleanup.actions": [
