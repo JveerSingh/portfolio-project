@@ -303,18 +303,18 @@ Take some time to fill them out honestly.
 > complete the portfolio project, how much better (or worse) do you think you
 > understand software development and why?
 
-<!-- TODO: discuss -->
+I think I understand software development a lot better because of how this project was centered around real world use cases. Being given full creative freedom to design a software component to solve a real world problem felt tied more to my career goals than academic goals. It was different than usual course projects since it was more than just solving a given problem and being told whether I did it correctly or not. I had to decide myself if what I was doing was correct while doing it. The concept of testing at the end made the project even more rigorous and revealed the challenges that real software developers encounter.
 
 > Also, did the portfolio project surface any gaps in your own knowledge of
 > software development. If so, what are those gaps and how did you address them?
 
-<!-- TODO: discuss -->
+I tried to connect this to class projects as much as I could to understand the hierarchy and how to implement certain methods. Though testing a project of this level was something I had no experience with before and it felt more intensive than any other projects. Furthermore, having to use software development to prove the usefulness of a component was a little tricky at first.
 
 > Finally, as a part of completing the portfolio project, to what extent has
 > your perspective of software development changed, if at all? In other words,
 > is software development something you still enjoy? If not, why not?
 
-<!-- TODO: discuss -->
+Software development remains something I still enjoy. Although this was a challenging task in which I encountered many moments where I felt burnt out trying to implement a method or solve a problem I found in my component, I realize now how the process differs from what I used to think. I found debugging/testing to be way more important than I thought in software development.
 
 > One of the challenges of completing the portfolio project is picking up a lot
 > of skills on your own. Some of these skills are, of course, software skills.
@@ -322,29 +322,29 @@ Take some time to fill them out honestly.
 > this process. Therefore, the first question is what skills did you pick up
 > through this process?
 
-<!-- TODO: discuss -->
+In addition to software skills I picked up problem solving and algorithmic thinking skills. In order to implement my component I had to solve many problems along the way in order to get a working implementation, and spend a lot of time thinking algorithmically to use data structures which would make the process of creating this component easier.
 
 > The follow-up question is: could you rephrase these skills you picked up
 > as bullet points that you could put on a resume? Try it below.
 
-<!-- TODO: discuss -->
+- Problem Solving
+- Algorithmic Thinking
+- Designing Software Components
 
 > Next, how has working on this project affected your career trajectory?
 > In other words, do you now hate the topic you picked? Or, are you even more
 > interested in it? Both outcomes are valuable to your personal development.
 
-<!-- TODO: discuss -->
+I'm very interested in the intersection of technology and business. Picking this topic allowed me to explore that interest further and I think has helped me on a great career trajectory. I'm now in the process of declaring a dual degree in CS and Business Administration, and I have picked up an internship over the summer in computational finance. Working on this project gave me more certainty on my interests and I'm very grateful for that. I'm in my first year and I came in not really knowing what I wanted. I feel this project helped me explore and understand my career trajectory.
 
 > Finally, consider the skills you've picked up and your current career
 > trajectory. What are some things you could do to continue on your
 > career trajectory? Also, who are some mentors you could contact to help
 > you stay on your path?
 
-<!-- TODO: discuss -->
+To continue on my current career trajectory I can keep updating and potentially expand upon this project in the future. I have friends who are upperclassmen and working at companies who I can continue to reach out to for guidance.
 
 ### Changelog
-
-<!-- TODO: update CHANGELOG then delete this comment -->
 
 At the end of every assignment, you should update the
 [CHANGELOG.md](../../CHANGELOG.md) file found in the root of the project folder.
@@ -379,8 +379,6 @@ like to accomplish that, you will need to make GitHub releases after each pull
 request merge (or at least tag your commits). This is not required.
 
 ### Submission
-
-<!-- TODO: read the submission instructions then delete this comment -->
 
 Assuming that your project is in a GitHub repo somewhere and your changes are on
 a proof-of-concept branch, then what we'll want you to do is create a pull
@@ -431,7 +429,5 @@ PDF to read this rubric as a table).
 If you'd like to give feedback for this assignment (or any assignment, really),
 make use of [this survey][survey]. Your feedback helps make assignments
 better for future students.
-
-<!-- TODO: follow the link to share your feedback then delete this comment -->
 
 [survey]: https://forms.gle/dumXHo6A4Enucdkq9

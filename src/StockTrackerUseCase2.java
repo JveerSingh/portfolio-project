@@ -10,22 +10,55 @@ public final class StockTrackerUseCase2 {
     }
 
     /**
-     * Demonstrates updating shares and prices in a tracker.
+     * Demonstrates managing and comparing multiple portfolios.
      *
      * @param args
+     *            command-line arguments
      */
     public static void main(String[] args) {
-        // Jays Portfolio
-        StockTracker s1 = new StockTracker1L();
-        s1.addTicker("TSLA", 2, 180.0);
-        s1.addShares("TSLA", 3);
-        s1.setPrice("TSLA", 190.0);
+        StockTracker jay = new StockTracker1L();
+        StockTracker tim = new StockTracker1L();
+        StockTracker jeremy = new StockTracker1L();
 
-        // Tims Portfolio
-        StockTracker s2 = new StockTracker1L();
+        // Jay's portfolio
+        jay.addTicker("TSLA", 5, 190.0);
+        jay.addTicker("AAPL", 8, 175.0);
 
-        // Jeremys Portfolio
-        StockTracker s3 = new StockTracker1L();
+        // Tim's portfolio
+        tim.addTicker("MSFT", 4, 400.0);
+        tim.addTicker("NVDA", 2, 900.0);
 
+        // Jeremy's portfolio
+        jeremy.addTicker("AMZN", 6, 185.0);
+        jeremy.addTicker("GOOG", 3, 160.0);
+
+        System.out.println("Jay's portfolio: " + jay);
+        System.out.println("Tim's portfolio: " + tim);
+        System.out.println("Jeremy's portfolio: " + jeremy);
+
+        System.out.println();
+
+        System.out.println("Jay total value: $" + jay.totalValue());
+        System.out.println("Tim total value: $" + tim.totalValue());
+        System.out.println("Jeremy total value: $" + jeremy.totalValue());
+
+        System.out.println();
+
+        if (jay.totalValue() > tim.totalValue()
+                && jay.totalValue() > jeremy.totalValue()) {
+            System.out.println("Jay has the most valuable portfolio.");
+        } else if (tim.totalValue() > jay.totalValue()
+                && tim.totalValue() > jeremy.totalValue()) {
+            System.out.println("Tim has the most valuable portfolio.");
+        } else {
+            System.out.println("Jeremy has the most valuable portfolio.");
+        }
+
+        System.out.println();
+
+        System.out.println("Jay's largest holding: " + jay.largestHolding());
+        System.out.println("Tim's largest holding: " + tim.largestHolding());
+        System.out.println(
+                "Jeremy's largest holding: " + jeremy.largestHolding());
     }
 }
